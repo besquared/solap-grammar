@@ -1,0 +1,12 @@
+SELECT COUNT(*)
+CLUSTER BY individual, day
+SEQUENCE BY time ASCENDING
+SEQUENCE GROUP BY fare-group, day
+CUBOID BY SUBSTRING(X, Y, Y, X) WITH
+ X at station
+ Y at station
+LEFT-MAXIMILITY (x1, y1, y2, x2) WITH
+ x1.action = 'in' AND
+ y1.action = 'out' AND
+ y2.action = 'in' AND
+ x2.action = 'out'
